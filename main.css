@@ -1,0 +1,697 @@
+* { /*EXTREMELY IMPORTANT */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    font-family: 'Be Vietnam', sans-serif;
+    background-color: #252323;
+}
+:root {
+    --primary-color: rgba(0, 0, 0, 0.90); /*this controls the transparency of the image in the showcase:before class*/
+    --overlay-color: rgba(100, 94, 0, 0.95); /*last value is the opacity*/
+    --menu-speed: 0.75s;
+}
+.menu-wrap {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    display: none;
+}
+
+.menu-wrap .toggler {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2; 
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+}
+
+.menu-wrap .hamburger {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* HAMBURGER MIDDLE LINE */
+
+.menu-wrap .hamburger > div{ 
+    position: relative;
+    width: 100%;
+    height: 2px;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+}
+/* HAMBURGER TOP AND BOTTOM LINE */
+.menu-wrap .hamburger > div:before,
+.menu-wrap .hamburger > div:after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: -10px; /*moves both lines above the original line */
+    width: 100%;
+    height: 2px;
+    background: inherit;
+}
+/* HAMBURGER MOVES LINE DOWN */
+.menu-wrap .hamburger > div:after {
+    top: 10px; /*moves the other line to the bottom */
+}
+
+/* Toggler Animate */
+.menu-wrap .toggler:checked + .hamburger > div {
+    transform: rotate(135deg);
+}
+
+/* Animation into X */
+.menu-wrap .toggler:checked + .hamburger > div:before, 
+.menu-wrap .toggler:checked + .hamburger > div:after {
+    top: 0;
+    transform: rotate(90deg);
+}
+
+/* Rotate on hover when checked */
+
+.menu-wrap .toggler:checked:hover + .hamburger > div {
+    transform: rotate(225deg);
+}
+
+/* Show Menu */
+.menu-wrap .toggler:checked ~ .menu {
+    visibility: visible;   
+}
+.menu-wrap .toggler:checked ~ .menu > div {
+    transform: scale(1); 
+    transition-duration: var(--menu-speed);
+}
+
+.menu-wrap .toggler:checked ~ .menu > div > div {
+    opacity: 1;
+    transition: opacity 0.4 ease;
+}
+/* Wrapper for the text */
+.menu-wrap .menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 20vw;
+    visibility: hidden; 
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+/* text positioning */
+.menu-wrap .menu > div {
+    background: var(--primary-color);
+    width: 100vw;
+    height: 20vw;
+    display: flex;
+    flex: none; 
+    transform: scale(0); 
+    transition: all 0.4s ease;
+    font-size: 0.8em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-wrap .menu > div > div {
+    
+    text-align: center;
+    max-height: 100vh; 
+    opacity: 0; 
+    transition: opacity 0.4s ease;
+}
+
+.menu-wrap .menu > div > div > ul > li {
+    
+    list-style: none;
+    color: whitesmoke;
+    font-size: 1.2em;
+    padding: 0.5rem;
+}
+
+.menu-wrap .menu > div > div > ul > li > a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.4s ease;
+}
+.HAM:hover {
+    border-bottom: 1px solid white;
+    cursor: pointer;
+    transform: translateY(-2.0px);
+    transition: ease-in-out 0.2s;
+}
+.Landing-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #252323;
+    color: white;
+}
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    font-size: 1.2em;
+
+    padding: 30px;
+    border-bottom: 1px solid white;
+}
+.nav-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.About-me-button, .experience-button, .projects-button {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.About-me-button:hover, .contact-button:hover, .projects-button:hover {
+    color: #D8D200;
+    cursor: pointer;
+    transform: translateY(-2.0px);
+    transition: ease-in-out 0.2s;
+    
+}
+.title-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    height: 100vh;
+    margin: 0;
+}
+.title-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+.Greeting-container {
+    font-size: 1.5em;
+    color: #A5A1A1;
+    padding-bottom: 20px;
+}
+.Name-container {
+    font-size: 4em;
+    font-weight: bolder;
+} 
+.Description-container {
+    font-size: 4em;
+    color: #D8D200;
+    padding-bottom: 20px;
+}
+.sub-description-container {
+    font-size: 1.5em;
+    color: #A5A1A1;
+}
+.bottom-container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    border: 1px solid white;
+}
+.Email-container {
+    display: flex;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    width: 5%;
+    font-size: 1.0em;
+    position: fixed;
+}
+.Email-wrapper {
+    display: flex;
+    margin-right: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.Social-container {
+    display: flex;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    width: 5%;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+}
+.Email {
+    text-decoration: none;
+    color: white;
+}
+.fab {
+    padding-bottom: 20px;
+    font-size: 1.2em;
+    text-decoration: none;
+    color: white;
+}
+.fab:hover {
+    color: #D8D200;
+    cursor: pointer;
+    transform: translateY(-2.0px);
+    transition: ease-in-out 0.2s;
+}
+.Email:hover {
+    color: #D8D200;
+    cursor: pointer;
+    transform: translateX(2.0px);
+    transition: ease-in-out 0.2s;
+}
+.About-me-container{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #252323;
+    color: white;
+    padding: 20px;
+}
+.About-me-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 0px;
+    width: 40%;
+    height: auto;
+
+}
+.About-me-title {
+    width: 50%;
+    padding-bottom: 20px;
+    font-size: 3em;
+    color: #D8D200;
+}
+.Self-portrait-container {
+    display: flex;
+    width: 450px;
+    height: 450px;
+    border: 1px solid white;
+    background-color: #D8D200;
+    opacity: 0.4;
+}
+.Self-portrait-container:hover {
+    opacity: 0.8;
+    transition: ease-out 0.3s;
+    border: 3px solid #D8D200;
+    object-fit: cover;
+}
+img {
+    width: 100%;
+    height: 100%;
+
+    animation: animation;
+}
+.Biography-container {
+    width: 70%;
+    height: 100%;
+    font-size: 1.0em;
+}
+.active {
+    color: white;
+    transform: translateY(-2.0px);
+    transition: ease-in-out 0.3s;
+    cursor: default;
+}
+.projects-container {
+    display: flex;
+    height: 100vh;
+    width: auto;
+    padding: 10px;
+    background-color: #252323;
+    color: white;
+}
+.projects-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.projects-heading-container {
+    width: 50%;
+    padding-bottom: 20px;
+    font-size: 3em;
+    color: #D8D200;
+}
+.first-two-projects {
+    display: flex;
+    width: 50%;
+}
+.last-two-projects {
+    display: flex;
+    flex-direction:row;
+    width: 50%;
+}
+.project {
+    padding: 20px;
+    border: 1px solid white;
+    color: white;
+    text-decoration: none;
+}
+.project:hover {
+    background-color: white;
+    color:#252323; 
+    transition: ease-in-out 0.2s;
+    cursor: pointer;
+}
+
+.Contact-me-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #252323;
+    color: white;
+}
+.contact-me-title-container {
+    border: 1px solid white;
+    padding: 15px;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+
+    color:  #D8D200;
+}
+.contact-info-container {
+    margin-bottom: 10px;
+    padding: 15px;
+    font-size: 1.2em;
+    width: 40%;
+    text-align: center;
+}
+.contact-me-button {
+    border: 1px solid white;
+    border-radius: 40px;
+    padding: 22px;
+    background-color:  #252323;
+    color: white;
+    font-family: 'Be Vietnam', sans-serif;
+    font-weight: bold;
+}
+#contact-me-link {
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+    width: 100%;
+}
+
+.contact-me-button:hover {
+    background-color: white;
+    color:#252323; 
+    transition: ease-in-out 0.2s;
+    cursor: pointer;
+}
+.contact-me-button:hover > #contact-me-link {
+    color: #252323; 
+}
+.Credits-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #252323;
+    font-size: 0.7em;
+    margin-bottom: 25px;
+}
+.Social-container-footer {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.fab:hover {
+    color: #D8D200;
+    cursor: pointer;
+    transform: translateY(-2.0px);
+    transition: ease-in-out 0.2s;
+}
+.Credits-github-link {
+    border: none;
+    background-color: #252323;
+    color: #D1D0D0;
+    font-family: 'Be Vietnam', sans-serif;
+}
+.Credits-github-link:hover {
+    color: #D8D200;
+    cursor: pointer;
+    transition: ease-in-out 0.2s;
+    transform: translateY(-2.0px);
+    transition: ease-in-out 0.2s;
+}
+
+
+@keyframes animation {
+    0% {
+        transform: translateY(-60px);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes project-1-ani{
+    0% {
+        transform: translateX(0%);
+    }
+    33% {
+        transform: translateY(295px);
+    }
+    66% {
+        transform: translateX(220px) translateY(295px);
+    }
+    88% {
+        transform: translateX(220px);
+    }
+    100% {
+        
+    }
+}
+@keyframes project-2-ani {
+    0% {
+        transform: translateY(0%);
+    }
+    33% {
+        transform: translateX(-480px);
+    }
+    66% {
+        transform: translateY(300px) translateX(-480px);
+    }
+    88% {
+        transform: translateY(295px);
+    }
+    100% {
+        
+    }
+}
+@keyframes project-3-ani {
+    0% {
+        transform: translateY(0%);
+    }
+    33% {
+        transform: translateX(480px);
+    }
+    66% {
+        transform: translateY(-300px) translateX(480px);
+    }
+    88% {
+        transform: translateY(-295px);
+    }
+    100% {
+        
+    }
+}
+@keyframes project-4-ani {
+    0% {
+        transform: translateX(0%);
+    }
+    33% {
+        transform: translateY(-295px);
+    }
+    66% {
+        transform: translateX(-220px) translateY(-295px);
+    }
+    88% {
+        transform: translateX(-220px);
+    }
+    100% {
+        
+    }
+}
+
+
+/*MOBILE RESPONSIVENESS*/
+@media (max-width: 1200px) {
+    .Email-container {
+        display: none;
+    }
+    .Social-container {
+        display: none;
+    }
+    .fab {
+        margin-bottom: 10px;
+        padding: 10px;
+        font-size: 1.2em;
+        color: white;
+    }
+    .Social-container-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    .nav-container {
+        display: none;
+    }
+    .menu-wrap {
+        display: initial;
+    }
+    .title-wrapper {
+        width: 90%;
+    }
+    .About-me-container{    
+        flex-direction: column;
+        padding: 20px;
+    }
+    .About-me-wrapper {
+        flex-direction: column;
+        width: 90%;
+        margin-bottom: 60px;
+    }
+    .About-me-title {
+        font-size: 2em;
+    }
+    .Self-portrait-container {
+        width: 70%;
+    }
+    img {
+        width: 100%;
+        height: auto;
+        
+    }
+    .Biography-container {
+        width: 100%;
+        height: 100%;
+        font-size: 0.9em;
+        line-height: 1.6em;
+    }
+    .projects-heading-container {
+        display: flex;
+        flex-direction: start;
+    }
+    .projects-container {
+        margin-top: 20px;
+        font-size: 0.8em;
+    }
+    .projects-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 0px;
+    }
+    .first-two-projects {
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+    }
+    .last-two-projects {
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+    }
+    .project {
+        margin: 10px;
+    }
+    .project-one {
+        animation-timing-function: ease-in;
+        animation-fill-mode: forwards;
+        animation-name: cardFlip;
+    }
+    .contact-me-title-container {
+        font-size: 2.0em;
+    }
+    .contact-info-container {
+        width: 90%;
+    }
+    .Self-portrait-container {
+        
+        height: 300px;
+        width: 300px;
+       
+    }
+    
+
+    /* CARD FLIP ANIMATION TESTING */
+
+}
+
+@media (max-width: 700px) {
+
+    .title-wrapper {
+        width: 100%;
+        margin: 0;
+    }
+    .Greeting-container {
+        font-size: 1.2em;
+    }
+    .Name-container {
+        font-size: 2.0em;
+    } 
+    .Description-container {
+        font-size: 2.0em;
+    }
+    .sub-description-container {
+        font-size: 1.2em;
+    }
+    .Self-portrait-container {
+        
+        height: 250px;
+        width: 250px;
+       
+    }
+}
+
+@media (max-width: 650px) {
+    .menu-wrap .menu > div > div > ul > li {
+
+        list-style: none;
+        color: whitesmoke;
+        font-size: 1.2em;
+        padding: 0.5rem;
+    }
+    .menu-wrap .menu {
+        height: 40vw;
+    }
+    .menu-wrap .menu > div {
+        height: 40vw;
+    }
+}
